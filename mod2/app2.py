@@ -31,7 +31,7 @@ def index():
     path = 'output_file.txt'
     context = {}
     context['task1'] = f'Объем потребляемой памяти: {convert_measure(get_summary_rss(path))}'
-    context['task2'] = f'HI{get_mean_size()}'
+    context['task2'] = f'{get_mean_size()}'
     context['task3'] = ''
     context['task4'] = ''
     return render_template('index.html', context=context)

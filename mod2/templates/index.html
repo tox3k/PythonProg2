@@ -31,7 +31,16 @@
     <span>Откроется в новой вкладке</span>
     <a target="_blank" href="/file-preview/100/sample.txt">Превью файла</a>
     <h1>Задание 7</h1>
+    <form>
+        <label>Введите дату:</label>
+        <input type="date" id="date", placeholder="01-01-2024", oninput="toggleButtonOperation()"><br><br>
+        <label>Введите сумму:</label>
+        <input type="text" id="money", placeholder="1000" oninput="toggleButtonOperation()">
+        <input type="button" id="submit_operation" disabled="disabled" onclick="saveOperation()" value="Добавить операцию">
+        <input type="date" id="year_to_calculate" placeholder="2000">
+        <input type="button" id="calculate_year" value="Сумма за год" onclick="calculateYear()">
+        <input type="button" id="calculate_year_month" value="Сумма за месяц" onclick="calculateYearMonth()">
+    </form>
     <span>Откроется в новой вкладке</span>
-    <a href="#">Учет финансов</a>
 </body>
 

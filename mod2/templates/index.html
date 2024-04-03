@@ -1,14 +1,37 @@
-<h1>Задание 1</h1>
-<p>Список процессов(get_summary_rss): {{ context.task1 }}</p>
-<h1>Задание 2</h1>
-<p>Средний размер файла(get_mean_size): {{context.task2}}</p>
-<h1>Задание 3</h1>
-<p> Дешифратор{{context.task3}}</p>
-<h1>Задание 4</h1>
-<a href="#">Хорошего дня!</a>
-<h1>Задание 5</h1>
-<a href="#">Максимальное число</a>
-<h1>Задание 6</h1>
-<a href="#">Превью файла</a>
-<h1>Задание 7</h1>
-<a href="#">Учет финансов</a>
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="static/script.js"></script>
+    <title>mod 2</title>
+</head>
+
+<body>
+    <h1>Задание 1</h1>
+    <p>Список процессов(get_summary_rss): {{ context.task1 }}</p>
+    <h1>Задание 2</h1>
+    <p>Средний размер файла(get_mean_size): {{context.task2}} </p>
+    <span><i>Запуск через ls -l | python3 app2.py</i></span>
+    <h1>Задание 3</h1>
+    <p> Дешифратор: {{context.task3}}</p>
+    <span>Закомментировать захват потока вывода предыдущим заданием и обновить страницу<br></span>
+    <code>context['task2'] <----- Убрать</code>
+    <button onclick="location.reload()">Обновить страницу</button>
+    <h1>Задание 4</h1>
+    <span>Откроется в новой вкладке</span>
+    <form>
+        <label>Введите имя:</label>
+        <input type="text" id="name" placeholder="Саша" onchange="toggleButton()", oninput="toggleButton()">
+        <input type="submit" disabled="disabled" onclick="open_greeting()" id="name_submit" value="Открыть">
+    </form>
+    <h1>Задание 5</h1>
+    <span>Откроется в новой вкладке</span>
+    <a target="_blank" href="/max_number/1/10/-100/400/300">Максимальное число</a>
+    <h1>Задание 6</h1>
+    <span>Откроется в новой вкладке</span>
+    <a target="_blank" href="/file-preview/100/sample.txt">Превью файла</a>
+    <h1>Задание 7</h1>
+    <span>Откроется в новой вкладке</span>
+    <a href="#">Учет финансов</a>
+</body>
+

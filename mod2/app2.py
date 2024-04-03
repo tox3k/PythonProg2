@@ -22,16 +22,24 @@ def convert_measure(bytes):
     return f'{res:.3f} {names[cnt]}'
 
 def get_mean_size():
-    data = sys.stdin.readlines()
+    data = sys.stdin.readlines()[1:]
+    sum = 0
+    cnt = 0
+    for line in data:
+        sum += float(line.split()[4])
+        cnt += 1
+    if cnt <= 0:
+        return 0
+    return sum / cnt
 
     return data
 
 @app.route('/')
 def index():
-    path = 'output_file.txt'
+    path = '/home/user/PycharmProjects/PythonProg2/mod2/output_file.txt'
     context = {}
     context['task1'] = f'Объем потребляемой памяти: {convert_measure(get_summary_rss(path))}'
-    context['task2'] = f'HI{get_mean_size()}'
+    context['task2'] = f'{get_mean_size()} B'
     context['task3'] = ''
     context['task4'] = ''
     return render_template('index.html', context=context)

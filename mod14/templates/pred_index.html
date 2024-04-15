@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Books
+        </title>
+<!--        <link rel="stylesheet" type="text/css" href="../static/style.css"-->
+    </head>
+    <body>
+        <h1>Books:</h1>
+        {% if books %}
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Views count</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>
+                        {{ book.id  }}
+                    </td>
+                    <td>
+                        {{ book.title}}
+                    </td>
+                    <td>
+                        {{ book.author}}
+                    </td>
+                    <td>
+                        {{book.views_count}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h2> Sorry, no books in BD. </h2>
+        {% endif %}
+<!--        {{ tables | safe }}-->
+<!-- Jinja Позволяет поместить в текстовый файл перпеменные которые известины только в момент запуска программы
+  safe отключает экранирование jinja и позволяет представить всё в формате html-->
+    </body>
+</html>

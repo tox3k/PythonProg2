@@ -1,0 +1,1 @@
+Please run `generate_hw_database.py` prior the practise work

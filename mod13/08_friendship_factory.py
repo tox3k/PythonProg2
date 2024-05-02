@@ -23,27 +23,11 @@
 
 
 
-
-
 """
 --------------------------------
 ЗАДАНИЕ РЕШЕНО НЕПРАВИЛЬНО!!!!!!!
 --------------------------------
 """
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -71,29 +55,50 @@ def update_work_schedule(c: sqlite3.Cursor) -> None:
     counter = 0
     group = []
     day = day_names[2]
-    date = datetime.fromisoformat('2022-01-01')
-    workers_work_days = {i: 0 for i in range(1, 367)}
+    date = datetime.fromisoformat('2025-01-01')
+    workers_work_days = {}
+    
     while True:
         for k, v in WORKERS_DICT.items():
             if len(group) == 10:
                 break
-            if counter > len(v) or day == k: 
+            if counter >= len(v) or day == k: 
                 continue
+            
+            if v[counter] in group:
+                continue
+
+            if v[counter] not in workers_work_days:
+                workers_work_days[v[counter]] = 0
+
             if workers_work_days[v[counter]] > 9:
                 continue
+
             group.append(v[counter])
         counter += 1
+
 
         if all(counter > len(v) for k, v in WORKERS_DICT.items()):
             counter = 0
 
-        if all(workers_work_days[worker] for worker in list(WORKERS_DICT.values())):
+        if all(workers_work_days[worker] > 4 for worker in list(workers_work_days.keys())) and list(workers_work_days.values()).count(6) < 3 and list(workers_work_days.values()).count(10) > len(list(workers_work_days.keys())) - 10:
                break
         
         if len(group) == 10:
             for worker in group:
-                c.execute(f'UPDATE table_friendship_schedule ORDER BY employee_id SET date=\'{date.strftime("%Y-%m-%d")}\' WHERE employee_id={worker} LIMIT 1 OFFSET {workers_work_days[worker]}')
+                query = f'UPDATE table_friendship_schedule SET date=\'{date.strftime("%Y-%m-%d")}\' WHERE employee_id={worker} ORDER BY employee_id LIMIT 1 OFFSET {workers_work_days[worker]}'
+                c.execute(query)
                 workers_work_days[worker] += 1
+            date = date + timedelta(days=1)
+            group = []
+        
+    query = f"""SELECT COUNT(DISTINCT employee_id) FROM table_friendship_schedule
+                WHERE date='None'"""
+    c.execute(query)
+    print(f'Кол-во работников, у которых менее 10 смен: {c.fetchone()[0]}')
+        
+    
+        
 
 
     

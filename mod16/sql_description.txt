@@ -1,0 +1,19 @@
+movie_cast ->  actors (act_id):
+    ManyToOne 
+    (each actor can be part of one or more movie_casts)
+
+movie_cast -> movie (mov_id):
+    ManyToOne
+    (each film has movie_cast, but there are more than one movie_cast rows)
+
+oscar_awarded -> mov_id (mov_id):
+    ManyToOne
+    (each film can have more than one oscar)
+
+movie_direction -> director (dir_id):
+    ManyToOne
+    (each film can have more than one directior)
+
+movie_direction -> movie (mov_id):
+    ManyToOne
+    (each film has movie_director, but there are more than one movie_director rows)
